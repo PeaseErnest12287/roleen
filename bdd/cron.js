@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Pool } = require("pg");
 let s =require("../set");
-var dbUrl=s.DATABASE_URL?s.DATABASE_URL:"postgres://db_7xp9_user:6hwmTN7rGPNsjlBEHyX49CXwrG7cDeYi@dpg-cj7ldu5jeehc73b2p7g0-a.oregon-postgres.render.com/db_7xp9"
+var dbUrl=s.DATABASE_URL?s.DATABASE_URL:"postgresql://neondb_owner:npg_K3Jz0surUSTE@ep-red-recipe-a9av8rxt-pooler.gwc.azure.neon.tech/neondb?sslmode=require"
 
 const proConfig = {
   connectionString:dbUrl ,
