@@ -1,25 +1,30 @@
 FROM node:lts-buster
 
+# Install dependencies
 RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  npm i pm2 -g && \
-  rm -rf /var/lib/apt/lists/*
-  
-RUN git clone https://github.com/PeaseErnest12287/roleen.git/root/ernest
-WORKDIR /root/ernest/
+    apt-get install -y \
+    ffmpeg \
+    imagemagick \
+    webp && \
+    apt-get upgrade -y && \
+    npm i -g pm2 && \
+    rm -rf /var/lib/apt/lists/*
 
+# Set up working directory
+WORKDIR /root/ernest
 
-COPY package.json .
-RUN npm install pm2 -g
+# Clone repository inside working directory
+RUN git clone https://github.com/PeaseErnest12287/roleen.git .
+
+# Copy package.json and install dependencies
+COPY package.json .  
 RUN npm install --legacy-peer-deps
 
+# Copy the remaining project files
 COPY . .
 
+# Expose port 5000
 EXPOSE 5000
 
-CMD ["npm", "run" , "ibrahim.js"]
-
+# Start the application
+CMD ["npm", "start"]
